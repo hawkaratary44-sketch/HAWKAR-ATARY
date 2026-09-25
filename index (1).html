@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پیشانگای ئاکار - HAWKAR ATARY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0f131d;
+      --card-bg: rgba(23, 30, 46, 0.85);
+      --card-border: rgba(246, 198, 8, 0.63);
+      --primary-yellow: lab(90.71% -9.43 89.83);
+      --accent-blue: oklab(54.691% -0.0274 -0.24545);
+      --accent-green: #10b981;
+      --accent-red: #ffffff;
+      --text-main: lch(100% 0.01 296.81);
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      font-family: 'Vazirmatn', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-logo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 12px auto;
+      display: block;
+      box-shadow: 0 0 25px rgb(232, 209, 3);
+      border: 2px solid rgb(11, 11, 10);
+    }
+
+    .header-title {
+      font-size: 45px;
+      font-weight: 900;
+      color: var(--primary-blue);
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.438);
+      margin-bottom: 2px;
+    }
+
+    .header-subtitle {
+      font-size: 15pxpx;
+      font-weight: 700;
+      color: var(--primary-yellow);
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-header {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-header.phone { color: var(--primary-yellow); border-color: rgba(250, 204, 21, 0.4); }
+    .btn-header.whatsapp { color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4); }
+
+    /* Storage Selector Card */
+    .storage-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .storage-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .storage-select {
+      background: #1e293b;
+      color: var(--primary-yellow);
+      border: 1px solid var(--primary-yellow);
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .progress-bg {
+      background: rgba(255, 255, 255, 0.08);
+      height: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-yellow);
+      transition: width 0.3s ease;
+    }
+
+    /* Search & Categories */
+    .search-box {
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .categories-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .cat-btn {
+      background: #1e293b;
+      color: var(--text-sub);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .cat-btn.active {
+      background: var(--primary-yellow);
+      color: #000;
+      border-color: var(--primary-yellow);
+    }
+
+    /* Actions Bar */
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn-send {
+      flex: 2;
+      background: var(--primary-yellow);
+      color: #000;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn-clear {
+      flex: 1;
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-red);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* Games Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .game-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+
+    .game-card.selected {
+      border-color: var(--primary-yellow);
+      box-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+    }
+
+    /* بخش تصویر بازی */
+    .game-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #1e293b;
+    }
+
+    .game-details {
+      padding: 10px;
+      text-align: center;
+      background: rgba(15, 19, 29, 0.9);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .game-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .game-size {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-yellow);
+    }
+
+    .check-box {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: transparent;
+      font-size: 12px;
+    }
+
+    .game-card.selected .check-box {
+      background: var(--primary-yellow);
+      color: #000;
+      border-color: var(--primary-yellow);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <img src="AA.png" alt="HAWKAR ATARY Logo" class="header-logo">
+      <div class="header-title">پیشانگای ئاکار</div>
+      <div class="header-subtitl">ناونیشان هەولێر بازاڕی نیشتمان نهۆمی خوارەوە بۆ دانانی هەموو یاریەکی PS2 </div>
+      <div class="header-buttons">
+        <a href="tel:07515340107" class="btn-header phone">📞 07515340107</a>
+        <a href="https://wa.me/9647515340107" target="_blank" class="btn-header whatsapp">💬 واتسئاپ</a>
+      </div>
+    </div>
+
+    <!-- Storage Selector -->
+    <div class="storage-card">
+      <div class="storage-row">
+        <div>کۆی قەبارە: <span id="totalSize" style="color:var(--primary-yellow)">0.00</span> GB</div>
+        <div>
+          قەبارەی فلاش دیاری بکه:
+          <select id="maxStorage" class="storage-select" onchange="updateUI()">
+            <option value="64">Flash 64 GB</option>
+            <option value="320">Hard 320 GB</option>
+          </select>
+        </div>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 گەڕان بەدوای ناوی یاری (نموونه: Call of Duty, Ben 10, Bully)..." oninput="renderGames()">
+    </div>
+
+    <!-- Categories Filter -->
+    <div class="categories-row">
+      <button class="cat-btn active" onclick="filterCategory('all', this)">💛 هەموو</button>
+      <button class="cat-btn" onclick="filterCategory('action', this)">🔫 ئاکشن & شووتەر</button>
+      <button class="cat-btn" onclick="filterCategory('war', this)">🪖 جەنگی</button>
+      <button class="cat-btn" onclick="filterCategory('horror', this)">👻 ترسانک</button>
+      <button class="cat-btn" onclick="filterCategory('cartoon', this)">📺 کارتۆن & ئەنیمی</button>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-bar">
+      <button class="btn-send" onclick="sendOrder()">🚀 ناردنی داواکاری (<span id="selectedCount">0</span>)</button>
+      <button class="btn-clear" onclick="clearAll()">🗑️ پاککردنەوەی هەمووی</button>
+    </div>
+
+    <!-- Games Grid -->
+    <div class="games-grid" id="gamesGrid"></div>
+  </div>
+
+  <script>
+    const games = [
+  { 
+    id: 3, 
+    title: "007 Agent Under Fire", 
+    size: 2.05, 
+    category: "action", 
+    img: "https://via.placeholder.com/150x200/1e293b/facc15?text=007+Agent" 
+  },
+  { 
+    id: 4, 
+    title: "007 Everything or Nothing", 
+    size: 3.82, 
+    category: "action", 
+    img: "https://via.placeholder.com/150x200/1e293b/facc15?text=007+Everything" 
+  },
+  { 
+    id: 14, 
+    title: "24The Game", 
+    size: 4.24, 
+    category: "action", 
+    img: "14.png" 
+  },
+  { 
+    id: 15, 
+    title: "Alone in the Dark", 
+    size: 3.34, 
+    category: "horror", 
+    img: "15.jpg" 
+  },
+  { 
+    id: 16, 
+    title: "Altered Beast", 
+    size: 1.98, 
+    category: "action", 
+    img: "16.png" 
+  },
+  { 
+    id: 13, 
+    title: "Angry Birds", 
+    size: 2.10, 
+    category: "cartoon", 
+    img: "13.jpg" 
+  },
+  { 
+    id: 18, 
+    title: "Avatar - The Last Airbender", 
+    size: 1.50, 
+    category: "cartoon", 
+    img: "18.png" 
+  },
+  { 
+    id: 17, 
+    title: "Avatar - The Last Airbender - Into", 
+    size: 2.12, 
+    category: "cartoon", 
+    img: "17.jpg" 
+  },
+  { 
+    id: 26, 
+    title: "Bad Boys", 
+    size: 2.10, 
+    category: "action", 
+    img: "26.png" 
+  },
+  { 
+    id: 28, 
+    title: "Bakugan - Battle Brawlers", 
+    size: 2.75, 
+    category: "cartoon", 
+    img: "28.jpg" 
+  },
+  { 
+    id: 149, 
+    title: "Barnyard", 
+    size: 1.92, 
+    category: "cartoon", 
+    img: "149.webp" 
+  },
+  { 
+    id: 27, 
+    title: "Batman Rise", 
+    size: 2.45, 
+    category: "action", 
+    img: "27.png" 
+  },
+  { 
+    id: 30, 
+    title: "Battle Stadium D.O.N", 
+    size: 1.64, 
+    category: "fighting", 
+    img: "30.png" 
+  },
+  { 
+    id: 31, 
+    title: "Battlefield 2 - Modern Combatt", 
+    size: 3.85, 
+    category: "war", 
+    img: "31.png" 
+  },
+  { 
+    id: 20, 
+    title: "Bee", 
+    size: 2.15, 
+    category: "cartoon", 
+    img: "20.png" 
+  },
+  { 
+    id: 32, 
+    title: "God of War", 
+    size: 7.93, 
+    category: "action", 
+    img: "32.png" 
+  },
+  { 
+    id: 33, 
+    title: "Ben 10 - Ultimate Alient", 
+    size: 2.80, 
+    category: "cartoon", 
+    img: "33.png" 
+  },
+  { 
+    id: 7, 
+    title: "Ben 10 Alien Force", 
+    size: 4.37, 
+    category: "cartoon", 
+    img: "9.jpg" 
+  },
+  { 
+    id: 34, 
+    title: "Ben 10 PTE", 
+    size: 2.50, 
+    category: "cartoon", 
+    img: "34.png" 
+  },
+  { 
+    id: 29, 
+    title: "Black", 
+    size: 3.65, 
+    category: "war", 
+    img: "29.png" 
+  },
+  { 
+    id: 23, 
+    title: "Bolt", 
+    size: 2.20, 
+    category: "cartoon", 
+    img: "23.png" 
+  },
+  { 
+    id: 22, 
+    title: "Bully", 
+    size: 4.31, 
+    category: "action", 
+    img: "22.png" 
+  },
+  { 
+    id: 35, 
+    title: "Burnout Revenge", 
+    size: 3.25, 
+    category: "racing", 
+    img: "35.png" 
+  },
+  { 
+    id: 36, 
+    title: "Call of Duty - Finest Hour", 
+    size: 4.27, 
+    category: "war", 
+    img: "36.jpg" 
+  },
+  { 
+    id: 1, 
+    title: "Call of Duty : World at War", 
+    size: 2.60, 
+    category: "war", 
+    img: "1.jpg" 
+  },
+  { 
+    id: 25, 
+    title: "Call of Duty 2 - Big Red One", 
+    size: 3.39, 
+    category: "war", 
+    img: "25.jpg" 
+  },
+  { 
+    id: 24, 
+    title: "Call of Duty 3", 
+    size: 3.39, 
+    category: "war", 
+    img: "24.jpg" 
+  },
+  { 
+    id: 38, 
+    title: "Captain Tsubasa", 
+    size: 1.14, 
+    category: "sports", 
+    img: "38.png" 
+  },
+  { 
+    id: 177, 
+    title: "Caribbean - The Legend of Jack Sparrow", 
+    size: 2.40, 
+    category: "action", 
+    img: "177.png" 
+  },
+  { 
+    id: 39, 
+    title: "Cars", 
+    size: 3.10, 
+    category: "racing", 
+    img: "39.jpg" 
+  },
+  { 
+    id: 37, 
+    title: "Narnia, The - Prince Caspian", 
+    size: 3.09, 
+    category: "adventure", 
+    img: "37.png" 
+  },
+  { 
+    id: 40, 
+    title: "Narnia, The - The Lion, the Witch and the Wardrobe", 
+    size: 2.94, 
+    category: "adventure", 
+    img: "40.jpg" 
+  },
+  { 
+    id: 41, 
+    title: "Clock Tower 3", 
+    size: 3.99, 
+    category: "horror", 
+    img: "41.jpg" 
+  },
+  { 
+    id: 42, 
+    title: "Cold Fear", 
+    size: 3.31, 
+    category: "horror", 
+    img: "42.jpg" 
+  },
+  { 
+    id: 43, 
+    title: "Commandos Strik force", 
+    size: 2.97, 
+    category: "war", 
+    img: "43.jpg" 
+  },
+  { 
+    id: 45, 
+    title: "Conflict - Vietnam", 
+    size: 2.37, 
+    category: "war", 
+    img: "45.jpg" 
+  },
+  { 
+    id: 19, 
+    title: "Conflict Desert Storm I", 
+    size: 3.93, 
+    category: "war", 
+    img: "19.jpg" 
+  },
+  { 
+    id: 2, 
+    title: "Conflict Desert Storm II", 
+    size: 2.14, 
+    category: "war", 
+    img: "2.png" 
+  },
+  { 
+    id: 44, 
+    title: "Constantine", 
+    size: 4.14, 
+    category: "horror", 
+    img: "44.jpg" 
+  },
+  { 
+    id: 46, 
+    title: "Crash - Mind over Mutant", 
+    size: 1.87, 
+    category: "cartoon", 
+    img: "46.jpg" 
+  },
+  { 
+    id: 47, 
+    title: "Crash Nitro Kart", 
+    size: 2.98, 
+    category: "racing", 
+    img: "47.jpg" 
+  },
+  { 
+    id: 48, 
+    title: "Crash of the Titans", 
+    size: 3.05, 
+    category: "cartoon", 
+    img: "48.jpg" 
+  },
+  { 
+    id: 49, 
+    title: "Crash Tag Team Racing", 
+    size: 3.29, 
+    category: "racing", 
+    img: "49.jpg" 
+  },
+  { 
+    id: 50, 
+    title: "Crash Twinsanity", 
+    size: 1.96, 
+    category: "cartoon", 
+    img: "50.jpg" 
+  },
+  { 
+    id: 51, 
+    title: "Curious George", 
+    size: 4.37, 
+    category: "cartoon", 
+    img: "51.png" 
+  },
+  { 
+    id: 52, 
+    title: "Darkwatch", 
+    size: 4.33, 
+    category: "horror", 
+    img: "52.jpg" 
+  },
+  { 
+    id: 53, 
+    title: "Def Jam - Fight for NY", 
+    size: 4.37, 
+    category: "fighting", 
+    img: "53.jpg" 
+  },
+  { 
+    id: 56, 
+    title: "Devil May Cry", 
+    size: 4.37, 
+    category: "action", 
+    img: "56.jpg" 
+  },
+  { 
+    id: 54, 
+    title: "Devil May Cry 2", 
+    size: 4.37, 
+    category: "action", 
+    img: "54.jpg" 
+  },
+  { 
+    id: 5, 
+    title: "Devil May Cry 3", 
+    size: 4.10, 
+    category: "action", 
+    img: "7.png" 
+  },
+  { 
+    id: 55, 
+    title: "PES 2005", 
+    size: 2.08, 
+    category: "action", 
+    img: "55.webp" 
+  },
+  { 
+    id: 57, 
+    title: "Disney Pirates of the Caribbean", 
+    size: 1.20, 
+    category: "action", 
+    img: "57.jpg" 
+  },
+  { 
+    id: 58, 
+    title: "Disney-Pixar Cars - Race-O-Rama", 
+    size: 3.91, 
+    category: "racing", 
+    img: "58.jpg" 
+  },
+  { 
+    id: 12, 
+    title: "Downhill", 
+    size: 2.35, 
+    category: "sports", 
+    img: "12.png" 
+  },
+  { 
+    id: 59, 
+    title: "Dragon Ball Z - Budokai Tenkaichi 3", 
+    size: 2.81, 
+    category: "fighting", 
+    img: "59.jpg" 
+  },
+  { 
+    id: 60, 
+    title: "Dragon Ball Z - Infinite World", 
+    size: 2.29, 
+    category: "fighting", 
+    img: "60.jpg" 
+  },
+  { 
+    id: 61, 
+    title: "DragonBall Z - Budokai 2", 
+    size: 4.33, 
+    category: "fighting", 
+    img: "61.jpg" 
+  },
+  { 
+    id: 63, 
+    title: "DragonBall Z - Budokai 3", 
+    size: 4.33, 
+    category: "fighting", 
+    img: "63.png" 
+  },
+  { 
+    id: 64, 
+    title: "DragonBall Z - Budokai Tenkaichi 2", 
+    size: 2.79, 
+    category: "fighting", 
+    img: "64.jpg" 
+  },
+  { 
+    id: 65, 
+    title: "DragonBall Z - Sagas", 
+    size: 1.27, 
+    category: "fighting", 
+    img: "65.jpg" 
+  },
+  { 
+    id: 66, 
+    title: "DreamWorks Shrek the Third", 
+    size: 1.17, 
+    category: "cartoon", 
+    img: "66.jpg" 
+  },
+  { 
+    id: 67, 
+    title: "Driv3r", 
+    size: 3.90, 
+    category: "racing", 
+    img: "67.jpg" 
+  },
+  { 
+    id: 68, 
+    title: "dynasty warriors 2", 
+    size: 3.29, 
+    category: "action", 
+    img: "68.jpg" 
+  },
+  { 
+    id: 69, 
+    title: "Dynasty Warriors 4 - Empires", 
+    size: 3.48, 
+    category: "action", 
+    img: "69.jpg" 
+  },
+  { 
+    id: 70, 
+    title: "Dynasty Warriors 5", 
+    size: 3.46, 
+    category: "action", 
+    img: "70.jpg" 
+  },
+  { 
+    id: 71, 
+    title: "Dynasty Warriors 6", 
+    size: 4.07, 
+    category: "action", 
+    img: "71.jpg" 
+  },
+  { 
+    id: 72, 
+    title: "Evil Dead - A Fistful of Boomstick", 
+    size: 3.60, 
+    category: "horror", 
+    img: "72.jpg" 
+  },
+  { 
+    id: 73, 
+    title: "Evil Dead - Regeneration", 
+    size: 2.28, 
+    category: "horror", 
+    img: "73.png" 
+  },
+  { 
+    id: 74, 
+    title: "Fantastic 4", 
+    size: 4.37, 
+    category: "action", 
+    img: "74.jpg" 
+  },
+  { 
+    id: 77, 
+    title: "Fatal Frame", 
+    size: 2.56, 
+    category: "horror", 
+    img: "77.jpg" 
+  },
+  { 
+    id: 75, 
+    title: "Fatal Frame II", 
+    size: 3.10, 
+    category: "horror", 
+    img: "75.jpg" 
+  },
+  { 
+    id: 76, 
+    title: "Fatal Frame III", 
+    size: 2.52, 
+    category: "horror", 
+    img: "76.jpg" 
+  },
+  { 
+    id: 78, 
+    title: "FIFA 06", 
+    size: 4.37, 
+    category: "sports", 
+    img: "78.jpg" 
+  },
+  { 
+    id: 79, 
+    title: "FIFA 08", 
+    size: 4.35, 
+    category: "sports", 
+    img: "79.jpg" 
+  },
+  { 
+    id: 80, 
+    title: "FIFA 11", 
+    size: 4.37, 
+    category: "sports", 
+    img: "80.jpg" 
+  },
+  { 
+    id: 82, 
+    title: "FIFA Street", 
+    size: 4.37, 
+    category: "sports", 
+    img: "82.jpg" 
+  },
+  { 
+    id: 81, 
+    title: "FIFA Street 2", 
+    size: 4.37, 
+    category: "sports", 
+    img: "81.jpg" 
+  },
+  { 
+    id: 83, 
+    title: "FlatOut 2", 
+    size: 3.75, 
+    category: "racing", 
+    img: "83.jpg" 
+  },
+  { 
+    id: 84, 
+    title: "Forbidden Siren 2", 
+    size: 5.44, 
+    category: "horror", 
+    img: "84.jpg" 
+  },
+  { 
+    id: 85, 
+    title: "Freedom Fighters", 
+    size: 1.92, 
+    category: "war", 
+    img: "85.jpg" 
+  },
+  { 
+    id: 86, 
+    title: "Genji - Dawn of the Samurai", 
+    size: 3.90, 
+    category: "action", 
+    img: "86.jpg" 
+  },
+  { 
+    id: 88, 
+    title: "Getaway", 
+    size: 4.17, 
+    category: "action", 
+    img: "88.jpg" 
+  },
+  { 
+    id: 87, 
+    title: "Getaway Black Monday", 
+    size: 3.91, 
+    category: "action", 
+    img: "87.jpg" 
+  },
+  { 
+    id: 89, 
+    title: "Ghost Rider", 
+    size: 2.45, 
+    category: "action", 
+    img: "89.jpg" 
+  },
+  { 
+    id: 90, 
+    title: "Gladiator", 
+    size: 2.45, 
+    category: "action", 
+    img: "90.png" 
+  },
+  { 
+    id: 9, 
+    title: "God Hand", 
+    size: 1.45, 
+    category: "action", 
+    img: "11.jpg" 
+  },
+  { 
+    id: 8, 
+    title: "God Of War 2", 
+    size: 7.94, 
+    category: "action", 
+    img: "10.png" 
+  },
+  { 
+    id: 91, 
+    title: "Godfather", 
+    size: 4.00, 
+    category: "action", 
+    img: "91.jpg" 
+  },
+  { 
+    id: 92, 
+    title: "Gran Turismo 4", 
+    size: 4.94, 
+    category: "racing", 
+    img: "92.jpg" 
+  },
+  { 
+    id: 93, 
+    title: "Grand Theft Auto - Liberty City Stories", 
+    size: 3.73, 
+    category: "action", 
+    img: "93.jpg" 
+  },
+  { 
+    id: 94, 
+    title: "Grand Theft Auto - San Andreas", 
+    size: 4.20, 
+    category: "action", 
+    img: "94.jpg" 
+  },
+  { 
+    id: 96, 
+    title: "Grand Theft Auto - Vice City", 
+    size: 4.37, 
+    category: "action", 
+    img: "96.jpg" 
+  },
+  { 
+    id: 95, 
+    title: "Grand Theft Auto - Vice City Stories", 
+    size: 3.86, 
+    category: "action", 
+    img: "95.jpg" 
+  },
+  { 
+    id: 97, 
+    title: "Grand Theft Auto III", 
+    size: 4.32, 
+    category: "action", 
+    img: "97.jpg" 
+  },
+  { 
+    id: 98, 
+    title: "GTA SPIDERMAN", 
+    size: 3.80, 
+    category: "action", 
+    img: "98.png" 
+  },
+  { 
+    id: 21, 
+    title: "Gun", 
+    size: 2.81, 
+    category: "action", 
+    img: "21.jpg" 
+  },
+  { 
+    id: 99, 
+    title: "Gundam Musou Special", 
+    size: 4.15, 
+    category: "action", 
+    img: "99.png" 
+  },
+  { 
+    id: 106, 
+    title: "Harry Potter and the Order of the Phoenix", 
+    size: 4.32, 
+    category: "adventure", 
+    img: "106.jpg" 
+  },
+  { 
+    id: 107, 
+    title: "Harry Potter and the Prisoner of Azkaban", 
+    size: 2.13, 
+    category: "adventure", 
+    img: "107.jpg" 
+  },
+  { 
+    id: 108, 
+    title: "Harvest Moon", 
+    size: 1.18, 
+    category: "adventure", 
+    img: "108.png" 
+  },
+  { 
+    id: 109, 
+    title: "Heatseeker", 
+    size: 3.95, 
+    category: "action", 
+    img: "109.jpg" 
+  },
+  { 
+    id: 110, 
+    title: "History Civil War - Secret Missions", 
+    size: 1.16, 
+    category: "war", 
+    img: "110.jpg" 
+  },
+  { 
+    id: 111, 
+    title: "Hitman - Blood Money", 
+    size: 3.90, 
+    category: "action", 
+    img: "111.jpg" 
+  },
+  { 
+    id: 112, 
+    title: "Hitman - Contracts", 
+    size: 3.10, 
+    category: "action", 
+    img: "112.jpg" 
+  },
+  { 
+    id: 113, 
+    title: "Hitman 2 - Silent Assassin", 
+    size: 1.94, 
+    category: "action", 
+    img: "113.jpg" 
+  },
+  { 
+    id: 114, 
+    title: "Ice Age 2 - The Meltdown", 
+    size: 2.50, 
+    category: "cartoon", 
+    img: "114.jpg" 
+  },
+  { 
+    id: 115, 
+    title: "Ice Age 3 - Dawn of the Dinosaurs", 
+    size: 2.90, 
+    category: "cartoon", 
+    img: "115.jpg" 
+  },
+  { 
+    id: 100, 
+    title: "ICO", 
+    size: 1.70, 
+    category: "adventure", 
+    img: "100.jpg" 
+  },
+  { 
+    id: 117, 
+    title: "Jak 3", 
+    size: 4.20, 
+    category: "cartoon", 
+    img: "117.jpg" 
+  },
+  { 
+    id: 118, 
+    title: "Jak and Daxter - The Lost Frontier", 
+    size: 2.71, 
+    category: "cartoon", 
+    img: "118.jpg" 
+  },
+  { 
+    id: 119, 
+    title: "Jak and Daxter - The Precursor Legacy", 
+    size: 1.35, 
+    category: "cartoon", 
+    img: "119.jpg" 
+  },
+  { 
+    id: 120, 
+    title: "Jak II", 
+    size: 4.10, 
+    category: "cartoon", 
+    img: "120.jpg" 
+  },
+  { 
+    id: 116, 
+    title: "Jak X - Combat Racing", 
+    size: 4.34, 
+    category: "racing", 
+    img: "116.jpg" 
+  },
+  { 
+    id: 121, 
+    title: "Jet Li: Rise to Honor", 
+    size: 2.67, 
+    category: "action", 
+    img: "121.jpg" 
+  },
+  { 
+    id: 122, 
+    title: "Justice League Heroes", 
+    size: 2.37, 
+    category: "action", 
+    img: "122.jpg" 
+  },
+  { 
+    id: 123, 
+    title: "Killzone", 
+    size: 4.30, 
+    category: "war", 
+    img: "123.jpg" 
+  },
+  { 
+    id: 124, 
+    title: "King Arthur", 
+    size: 2.62, 
+    category: "action", 
+    img: "124.jpg" 
+  },
+  { 
+    id: 178, 
+    title: "King Kong", 
+    size: 1.14, 
+    category: "action", 
+    img: "178.jpg" 
+  },
+  { 
+    id: 125, 
+    title: "King of Fighters - Maximum Impact", 
+    size: 1.14, 
+    category: "fighting", 
+    img: "125.jpg" 
+  },
+  { 
+    id: 126, 
+    title: "Kung Fu Panda", 
+    size: 3.89, 
+    category: "cartoon", 
+    img: "126.jpg" 
+  },
+  { 
+    id: 127, 
+    title: "Lara Croft Tomb Raider - Anniversary", 
+    size: 4.37, 
+    category: "adventure", 
+    img: "127.webp" 
+  },
+  { 
+    id: 128, 
+    title: "Lara Croft Tomb Raider - Legend", 
+    size: 2.81, 
+    category: "adventure", 
+    img: "128.webp" 
+  },
+  { 
+    id: 129, 
+    title: "Lara Croft Tomb Raider - The Angel of Darkness", 
+    size: 3.19, 
+    category: "adventure", 
+    img: "129.png" 
+  },
+  { 
+    id: 130, 
+    title: "LEGO Batman", 
+    size: 2.85, 
+    category: "cartoon", 
+    img: "130.jpg" 
+  },
+  { 
+    id: 131, 
+    title: "Looney Tunes - Back in Action", 
+    size: 2.84, 
+    category: "cartoon", 
+    img: "131.jpg" 
+  },
+  { 
+    id: 132, 
+    title: "Lord Rings Fellowship", 
+    size: 4.24, 
+    category: "action", 
+    img: "132.jpg" 
+  },
+  { 
+    id: 133, 
+    title: "Lord Rings Third Age", 
+    size: 3.80, 
+    category: "action", 
+    img: "133.jpg" 
+  },
+  { 
+    id: 134, 
+    title: "Lord Rings Two Towers", 
+    size: 3.10, 
+    category: "action", 
+    img: "134.jpg" 
+  },
+  { 
+    id: 135, 
+    title: "Madagascar 2", 
+    size: 2.95, 
+    category: "cartoon", 
+    img: "135.png" 
+  },
+  { 
+    id: 136, 
+    title: "Made Man", 
+    size: 2.80, 
+    category: "action", 
+    img: "136.jpg" 
+  },
+  { 
+    id: 137, 
+    title: "Mafia", 
+    size: 3.84, 
+    category: "action", 
+    img: "137.jpg" 
+  },
+  { 
+    id: 138, 
+    title: "Manhunt 1", 
+    size: 2.90, 
+    category: "horror", 
+    img: "138.jpg" 
+  },
+  { 
+    id: 139, 
+    title: "Manhunt 2", 
+    size: 3.10, 
+    category: "horror", 
+    img: "139.jpg" 
+  },
+  { 
+    id: 140, 
+    title: "Marvel - Ultimate Alliance", 
+    size: 3.85, 
+    category: "action", 
+    img: "140.jpg" 
+  },
+  { 
+    id: 141, 
+    title: "Marvel Ultimate Alliance 2", 
+    size: 1.50, 
+    category: "action", 
+    img: "141.jpg" 
+  },
+  { 
+    id: 143, 
+    title: "Max Payne", 
+    size: 4.07, 
+    category: "action", 
+    img: "143.jpg" 
+  },
+  { 
+    id: 142, 
+    title: "Max Payne 2", 
+    size: 2.42, 
+    category: "action", 
+    img: "142.jpg" 
+  },
+  { 
+    id: 144, 
+    title: "Medal of Honor - European Assault", 
+    size: 3.59, 
+    category: "war", 
+    img: "144.jpg" 
+  },
+  { 
+    id: 145, 
+    title: "Medal of Honor - Frontline", 
+    size: 3.13, 
+    category: "war", 
+    img: "145.jpg" 
+  },
+  { 
+    id: 146, 
+    title: "Medal of Honor - Rising Sun", 
+    size: 4.28, 
+    category: "war", 
+    img: "146.jpg" 
+  },
+  { 
+    id: 147, 
+    title: "Medal of Honor - Vanguard", 
+    size: 1.15, 
+    category: "war", 
+    img: "147.png" 
+  },
+  { 
+    id: 150, 
+    title: "Mercenaries - Playground of Destruction", 
+    size: 4.37, 
+    category: "war", 
+    img: "150.jpg" 
+  },
+  { 
+    id: 151, 
+    title: "Mercenaries 2 - World in Flames", 
+    size: 4.37, 
+    category: "war", 
+    img: "151.jpg" 
+  },
+  { 
+    id: 152, 
+    title: "Metal Gear Solid 2 - Sons of Liberty", 
+    size: 4.30, 
+    category: "action", 
+    img: "152.jpg" 
+  },
+  { 
+    id: 153, 
+    title: "Metal Gear Solid 3 - Snake Eater", 
+    size: 4.24, 
+    category: "action", 
+    img: "153.jpg" 
+  },
+  { 
+    id: 154, 
+    title: "Midnight Club 3 - DUB Edition", 
+    size: 4.29, 
+    category: "racing", 
+    img: "154.jpg" 
+  },
+  { 
+    id: 155, 
+    title: "Mortal Kombat - Armageddon PE", 
+    size: 4.06, 
+    category: "fighting", 
+    img: "155.jpg" 
+  },
+  { 
+    id: 156, 
+    title: "Mortal Kombat - Deception", 
+    size: 4.35, 
+    category: "fighting", 
+    img: "156.jpg" 
+  },
+  { 
+    id: 157, 
+    title: "Mortal Kombat - Shaolin Monks", 
+    size: 3.25, 
+    category: "fighting", 
+    img: "157.jpg" 
+  },
+  { 
+    id: 160, 
+    title: "MotoGP 07", 
+    size: 1.25, 
+    category: "racing", 
+    img: "160.jpg" 
+  },
+  { 
+    id: 161, 
+    title: "MotoGP 08", 
+    size: 1.51, 
+    category: "racing", 
+    img: "161.jpg" 
+  },
+  { 
+    id: 158, 
+    title: "MotoGP 3", 
+    size: 2.74, 
+    category: "racing", 
+    img: "158.jpg" 
+  },
+  { 
+    id: 159, 
+    title: "MotoGP 4", 
+    size: 1.15, 
+    category: "racing", 
+    img: "159.jpg" 
+  },
+  { 
+    id: 162, 
+    title: "Narnia", 
+    size: 3.40, 
+    category: "adventure", 
+    img: "162.jpg" 
+  },
+  { 
+    id: 165, 
+    title: "Naruto - Ultimate Ninja", 
+    size: 1.41, 
+    category: "fighting", 
+    img: "165.jpg" 
+  },
+  { 
+    id: 163, 
+    title: "Naruto - Ultimate Ninja 2", 
+    size: 3.84, 
+    category: "fighting", 
+    img: "163.png" 
+  },
+  { 
+    id: 164, 
+    title: "Naruto - Ultimate Ninja 3", 
+    size: 3.76, 
+    category: "fighting", 
+    img: "164.jpg" 
+  },
+  { 
+    id: 167, 
+    title: "Naruto - Uzumaki Chronicles", 
+    size: 1.22, 
+    category: "fighting", 
+    img: "167.jpg" 
+  },
+  { 
+    id: 166, 
+    title: "Naruto - Uzumaki Chronicles 2", 
+    size: 1.20, 
+    category: "fighting", 
+    img: "166.jpg" 
+  },
+  { 
+    id: 168, 
+    title: "Naruto Shippuden - Ultimate Ninja 4", 
+    size: 3.81, 
+    category: "fighting", 
+    img: "168.jpg" 
+  },
+  { 
+    id: 169, 
+    title: "Naruto Shippuden - Ultimate Ninja 5", 
+    size: 1.79, 
+    category: "fighting", 
+    img: "169.jpg" 
+  },
+  { 
+    id: 170, 
+    title: "Need for Speed - Carbon", 
+    size: 3.44, 
+    category: "racing", 
+    img: "170.png" 
+  },
+  { 
+    id: 171, 
+    title: "Need for Speed - Hot Pursuit 2", 
+    size: 2.90, 
+    category: "racing", 
+    img: "171.png" 
+  },
+  { 
+    id: 172, 
+    title: "Need for Speed - Most Wanted - Black Edition", 
+    size: 3.44, 
+    category: "racing", 
+    img: "172.jpg" 
+  },
+  { 
+    id: 173, 
+    title: "Need for Speed - ProStreet", 
+    size: 3.45, 
+    category: "racing", 
+    img: "173.jpg" 
+  },
+  { 
+    id: 174, 
+    title: "Need for Speed - Undercover", 
+    size: 3.44, 
+    category: "racing", 
+    img: "174.jpg" 
+  },
+  { 
+    id: 175, 
+    title: "Need for Speed - Underground 2", 
+    size: 2.67, 
+    category: "racing", 
+    img: "175.png" 
+  },
+  { 
+    id: 176, 
+    title: "Nicktoons - Battle for Volcano Island", 
+    size: 1.16, 
+    category: "cartoon", 
+    img: "176.jpg" 
+  },
+  { 
+    id: 180, 
+    title: "ObsCure", 
+    size: 2.90, 
+    category: "horror", 
+    img: "180.jpg" 
+  },
+  { 
+    id: 179, 
+    title: "Obscure - The Aftermath", 
+    size: 1.92, 
+    category: "horror", 
+    img: "179.png" 
+  },
+  { 
+    id: 181, 
+    title: "One Piece - Grand Adventure", 
+    size: 1.16, 
+    category: "fighting", 
+    img: "181.png" 
+  },
+  { 
+    id: 182, 
+    title: "One Piece - Grand Battle", 
+    size: 1.42, 
+    category: "fighting", 
+    img: "182.jpg" 
+  },
+  { 
+    id: 183, 
+    title: "One Piece - Pirates' Carnival", 
+    size: 2.12, 
+    category: "cartoon", 
+    img: "183.png" 
+  },
+  { 
+    id: 184, 
+    title: "One Piece - Round the Land", 
+    size: 3.93, 
+    category: "action", 
+    img: "184.jpg" 
+  },
+  { 
+    id: 185, 
+    title: "Onimusha - Dawn of Dreams", 
+    size: 4.37, 
+    category: "action", 
+    img: "185.jpg" 
+  },
+  { 
+    id: 186, 
+    title: "Onimusha - Warlords", 
+    size: 3.76, 
+    category: "action", 
+    img: "186.jpg" 
+  },
+  { 
+    id: 187, 
+    title: "Onimusha 2 - Samurai's Destiny", 
+    size: 3.55, 
+    category: "action", 
+    img: "187.jpg" 
+  },
+  { 
+    id: 188, 
+    title: "Onimusha 3 - Demon Siege", 
+    size: 4.36, 
+    category: "action", 
+    img: "188.jpg" 
+  },
+  { 
+    id: 189, 
+    title: "Open Season", 
+    size: 4.35, 
+    category: "cartoon", 
+    img: "189.jpg" 
+  },
+  { 
+    id: 190, 
+    title: "Over the Hedge", 
+    size: 1.56, 
+    category: "cartoon", 
+    img: "190.jpg" 
+  },
+  { 
+    id: 101, 
+    title: "PES 2027", 
+    size: 3.90, 
+    category: "sports", 
+    img: "101.png" 
+  },
+  { 
+    id: 191, 
+    title: "PES 2003", 
+    size: 2.26, 
+    category: "sports", 
+    img: "191.png" 
+  },
+  { 
+    id: 6, 
+    title: "Resident Evil 4", 
+    size: 4.13, 
+    category: "horror", 
+    img: "8.jpg" 
+  },
+  { 
+    id: 102, 
+    title: "Resident Evil 4 Mod", 
+    size: 4.20, 
+    category: "horror", 
+    img: "102.jpg" 
+  },
+  { 
+    id: 103, 
+    title: "Shin Megami Tensei - Persona 4", 
+    size: 4.15, 
+    category: "adventure", 
+    img: "103.jpg" 
+  },
+  { 
+    id: 104, 
+    title: "SpongeBob Globs of Doom", 
+    size: 2.10, 
+    category: "cartoon", 
+    img: "104.jpg" 
+  },
+  { 
+    id: 105, 
+    title: "SpongeBob SquarePants - The Movie", 
+    size: 2.30, 
+    category: "cartoon", 
+    img: "105.png" 
+  },
+  { 
+    id: 148, 
+    title: "Lord of the Rings The Return of the King", 
+    size: 3.50, 
+    category: "action", 
+    img: "148.jpg" 
+  }
+    ];
+
+    let selectedGameIds = [];
+    let currentCategory = 'all';
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGames();
+    }
+
+    function renderGames() {
+      const grid = document.getElementById('gamesGrid');
+      grid.innerHTML = '';
+
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = games.filter(game => {
+        const matchesCategory = (currentCategory === 'all' || game.category === currentCategory);
+        const matchesSearch = game.title.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+      });
+
+      filtered.forEach(game => {
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        const isSelected = selectedGameIds.includes(game.id);
+        const card = document.createElement('div');
+        card.className = `game-card ${isSelected ? 'selected' : ''}`;
+        card.onclick = () => toggleSelectGame(game.id);
+
+        card.innerHTML = `
+          <div class="check-box">✓</div>
+          <img class="game-image" src="${game.img}" alt="${game.title}" onerror="this.src='https://via.placeholder.com/150x200/1e293b/ffffff?text=No+Image'">
+          <div class="game-details">
+            <div class="game-title">${game.title}</div>
+            <div class="game-size">GB ${game.size}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 30px; text-align:center; color: var(--text-sub);">هیچ یاریەیەک نەدۆزرایەوە 🔍</div>`;
+      }
+
+      updateUI();
+    }
+
+    function toggleSelectGame(id) {
+      if (selectedGameIds.includes(id)) {
+        selectedGameIds = selectedGameIds.filter(gId => gId !== id);
+      } else {
+        selectedGameIds.push(id);
+      }
+      renderGames();
+    }
+
+    function updateUI() {
+      let total = 0;
+      games.forEach(game => {
+        if (selectedGameIds.includes(game.id)) {
+          total += game.size;
+        }
+      });
+
+      document.getElementById('totalSize').innerText = total.toFixed(2);
+      document.getElementById('selectedCount').innerText = selectedGameIds.length;
+
+      const maxStorage = parseFloat(document.getElementById('maxStorage').value);
+      const percentage = Math.min((total / maxStorage) * 100, 100);
+      document.getElementById('progressBar').style.width = percentage + '%';
+    }
+
+    function clearAll() {
+      selectedGameIds = [];
+      renderGames();
+    }
+
+    function sendOrder() {
+      if (selectedGameIds.length === 0) {
+        alert("تکایە سەرەتا چەند یاریەک دیاری بکه!");
+        return;
+      }
+
+      let text = "سڵاو، داواکاری ئەم یاریانەم هەبوو:\n\n";
+      let totalGB = 0;
+
+      games.forEach(game => {
+        if (selectedGameIds.includes(game.id)) {
+          text += `• ${game.title} (${game.size} GB)\n`;
+          totalGB += game.size;
+        }
+      });
+
+      text += `\nکۆی قەبارە: ${totalGB.toFixed(2)} GB`;
+
+      const phone = "9647515340107";
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    renderGames();
+  </script>
+</body>
+</html>
